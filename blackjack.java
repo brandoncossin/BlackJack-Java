@@ -58,8 +58,12 @@ public static void playBlackjack(){
             }
             else if (player.value > dealer.value && player.value < 22) {
                 System.out.println("player won");
-            } else {
-                System.out.println("Draw");
+            } 
+            else if (player.value == dealer.value){
+                 System.out.println("Draw");
+             }
+             else if(dealer.value > 21 && player.value < 21){
+                 System.out.println("dealer busted, Player won");
             }
             System.out.println();
         }
@@ -94,9 +98,13 @@ public static void playBlackjack(){
             }
             else if (player.value > dealer.value && player.value < 22) {
                 System.out.println("player won");
-            } else {
-                System.out.println("Draw");
-            }
+            } 
+            else if (player.value == dealer.value){
+                 System.out.println("Draw");
+             }
+             else if(dealer.value > 21 && player.value < 21){
+                 System.out.println("dealer busted, Player won");
+             }
             System.out.println();
             }
         }
@@ -217,7 +225,6 @@ class Player {
     ArrayList<Card> drawnCards = new ArrayList<>();
     //method to add cards to hand
     void addCard(Card x){
-        drawnCards.add(x);
         //switch to handle face card values
         //jack, king and queen should all have a value of 10 while Ace is 1 or 11 depending on current hand value
         switch (x.value){
@@ -226,6 +233,7 @@ class Player {
                 x.value = 11;
             }
             else{
+                x.strValue = "1";
                 x.value = 1;
             }
             break;
@@ -239,6 +247,7 @@ class Player {
             x.value = 10;
             break;
         }
+        drawnCards.add(x);
         for (int i = 0; i < drawnCards.size(); i++) {
             //System.out.println((drawnCards.get(i)).value);
             // forces Ace to be 1 and no longer an 11 ace if player hits
